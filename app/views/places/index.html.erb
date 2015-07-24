@@ -1,0 +1,13 @@
+<h1>Lekker Plekke</h1>
+
+<% @places.each do |place| %>
+	<p>
+		<%= link_to place.name, place_path(place) %> |
+		<%= link_to 'Edit', edit_place_path(place) %> |
+		<%= link_to 'Delete', place_path(place),
+			method: :delete,
+			data: { confirm: 'Are you sure?' } %>
+	</p>
+<% end %>
+
+<button class="btn btn-default" href=<%= link_to 'New Place', new_place_path %></button>

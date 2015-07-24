@@ -1,0 +1,33 @@
+<h1><%= @place.name %></h1>
+
+<p><%= @place.description %></p>
+<p><%= @place.region %></p>
+
+<%= @place.like %> <%= link_to 'Like', like_path %>
+
+<p><%= link_to 'Home', places_path %>
+| <%= link_to 'Edit', edit_place_path(@place) %>
+| <%= link_to 'Delete', place_path(@place),
+			method: :delete,
+			data: { confirm: 'Are you sure?' } %></p>
+
+<h2>Comments:</h2>
+	<% @place.comments.each do |comment| %>
+	  <p>
+	    <strong>Commenter:</strong>
+	    <%= comment.user %>
+	  </p>
+	 
+	  <p>
+	    <strong>Comment:</strong>
+	    <%= comment.body %>
+	  </p>
+
+<p>
+  <%= link_to 'Delete Comment', [comment.place, place],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>
+	<% end %>
+
+<%= render 'comments/form' %>
